@@ -3,8 +3,12 @@ import styles from '../css/components/Countdown.module.css'
 
 export function Countdown(){
 
-  const [time, setTime] = useState(25 * 60);
-  const [active, setActive] = useState(false)
+  let countdownTimeout: NodeJS.Timeout;
+
+  const [hasFinished, setHasFinished] = useState(false);
+
+  const [time, setTime] = useState(1 * 2);
+  const [isActive, setIsActive] = useState(false)
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -13,16 +17,25 @@ export function Countdown(){
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('')
 
   function startCountdown(){
-    setActive(true);
+    setIsActive(true);
+  }
+
+  function resetCountdown(){
+    setIsActive(false)
+    clearTimeout(countdownTimeout)
   }
 
   useEffect(() => {
-    if(active && time > 0){
-      setTimeout(() => {
-        setTime(time-1);
+    if(isActive && time > 0){
+      countdownTimeout = setTimeout(() => {
+        setTime(time-1)
       }, 1000)
+    }else if(isActive && time == 0){
+      console.log("finalizado")
+      setHasFinished(true)
+      setIsActive(false)
     }
-  } , [active, time] )
+  } , [isActive, time] )
 
   return(
     <div>
@@ -38,9 +51,32 @@ export function Countdown(){
         </div>
       </div>
 
-      <button onClick={startCountdown} type="button" className={styles.countdownButton}>
-        Iniciar um ciclo
-      </button>
+      {hasFinished ? (
+        <button 
+          disabled 
+          className={`${styles.countdownButton}`}
+          >
+          ciclo encerrado 
+          <span className={styles.cicleIcon}>
+            <img src="icons/win.svg"/>
+          </span>
+        </button>
+      ): (
+          <>
+            {isActive ? (
+              <button onClick={resetCountdown} type="button" className={`${styles.countdownButton} ${styles.countdownButtonActive}`}>
+                Abandonar ciclo
+              </button>
+            ): (
+              <button onClick={startCountdown} type="button" className={styles.countdownButton}>
+              Iniciar um ciclo 
+              </button>
+            )}
+          </>
+      )}
+
+   
+
       
     </div>
   )
