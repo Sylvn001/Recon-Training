@@ -89,7 +89,7 @@
   font-size: 1rem;
   font-weight: 600;
 
-  transition: filter 0.02s;
+  transition: filter 0.2s;
 
 }
 
@@ -101,6 +101,6 @@
   background: var(--green);
 }
 
-.challengedActive footer button:hover{
+.challengeActive footer button:hover{
   filter: brightness(0.9);
 }
