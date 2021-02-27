@@ -23,7 +23,7 @@ let countdownTimeout: NodeJS.Timeout;
 
 const [hasFinished, setHasFinished] = useState(false);
 
-const [time, setTime] = useState(1 * 2);
+const [time, setTime] = useState(25 * 60);
 const [isActive, setIsActive] = useState(false);
 
 const minutes = Math.floor(time / 60);
@@ -36,7 +36,7 @@ function startCountdown(){
 function resetCountdown(){
   clearTimeout(countdownTimeout)
   setIsActive(false)
-  setTime(1*2)
+  setTime(25*60)
   setHasFinished(false)
 }
 
