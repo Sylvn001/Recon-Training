@@ -104,3 +104,9 @@
 .challengeActive footer button:hover{
   filter: brightness(0.9);
 }
+
+@media (max-width: 767.98px){
+  .challengeBoxContainer{
+    margin-bottom: 1.5rem;
+  }
+}

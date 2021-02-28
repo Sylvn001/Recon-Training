@@ -82,3 +82,10 @@
   align-items: center;
   margin-left: 0.5rem;
 }
+
+@media (max-width: 767.98px){
+  .countdownButton
+  {
+    margin-bottom: 2rem;
+  }
+}

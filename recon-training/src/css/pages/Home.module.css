@@ -16,3 +16,10 @@
   gap: 6.25rem;
   align-content: center;
 }
+
+@media (max-width: 767.98px){
+  .container section{
+    display: block;
+    margin-bottom: 2rem 1rem;
+  }
+}
